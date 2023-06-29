@@ -12,8 +12,9 @@ class UserSerializer(serializers.ModelSerializer):
         return "reader"
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email' ,'user_type']
-        extra_kwargs = {"password": {"write_only": True}}
+        fields = ['first_name', 'last_name', 'email' ,'user_type', 'username', 'password']
+        extra_kwargs = {"password": {"write_only": True},
+                        "username": {"write_only": True}}
 
     def create(self, validation_data):
         password = validation_data.pop("password", None)
